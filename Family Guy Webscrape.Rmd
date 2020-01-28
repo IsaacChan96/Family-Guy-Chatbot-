@@ -1,0 +1,29 @@
+---
+title: "Family Guy Scrape"
+author: "Isaac Chan"
+date: "1/14/2020"
+output: html_document
+---
+
+```{r}
+library(rvest)
+library(tidyverse)
+corpus<-""
+for (s in 1:18 ){
+  for (e in 1:25){tryCatch({
+s_zeros<-ifelse(s>9,"",0)
+ep_zeros<-ifelse(s>9,"",0)
+url<-paste0("https://www.springfieldspringfield.co.uk/view_episode_scripts.php?tv-show=family-guy&episode=s",s_zeros,s,"e",ep_zeros,e)
+nodes<-url%>%read_html()%>%html_nodes('body')
+script<-nodes%>%html_text()
+start<-str_locate(script,"He's a Fam ily Guy. \r")[2]
+end<-str_locate(script,"\r\n\r\n                \r\n\r\n\r\n                    Previous EpisodeNext Episode")[1]
+script<-substr(x=script,start,end)
+corpus<-paste0(corpus,script)
+  }, error=function(e){})}}
+data.frame(corpus)
+write.table(corpus,file='data.txt',sep='\t')
+
+class(corpus)
+```
+
