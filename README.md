@@ -13,6 +13,9 @@ and thus have a much larger dataset to train the model on. However, the advantag
 series is that the tone and type of replies are more consistent. Additionally, you can guess which character has replied you
 if you are familair enough with the series. 
 
+I have included R codes, titled under "Webscrape", which holds the codes for the webscraping through R.The text file for the
+conversations have also been uploaded, which allows you to bypass the scraping process.
+
 ### Acknowledgements
 
 Much of the architecture for the Transformer model has been adapted from a blog by Bryan M. Li. 
